@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
     public string playerName;
 
@@ -24,6 +24,27 @@ public class Player : MonoBehaviour
 
     public int rarity = 0;
     public float learningEffectiveness;
+
+    public int CalculateValue()
+    {
+        return 5000;
+    }
+    public int AverageSkill()
+    {
+        int attackAverage = 0;
+        int defendAverage = 0;
+        for (int i = 0; i < mapAttack.Length;i++)
+            attackAverage += mapAttack[i];
+        for (int i = 0; i < mapDefense.Length;i++)
+            defendAverage += mapDefense[i];
+        attackAverage = attackAverage / mapAttack.Length;
+        defendAverage = defendAverage / mapDefense.Length;
+
+        int total = attackAverage + defendAverage + aim + dodge + tSkill + ctSkill + intelligence + pistolSkill + smgSkill + rifleSkill + sniperSkill;
+
+        total = total / 11;
+        return total;
+    }
 
     static public Player Default(int sk = 5000)
     {
@@ -53,15 +74,4 @@ public class Player : MonoBehaviour
         return p;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
